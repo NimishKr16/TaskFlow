@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "478441637613",
+    "project_id": "taskflow-445df",
+    "storage_bucket": "taskflow-445df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478441637613:android:40e679914cebd8c89caee4",
+        "android_client_info": {
+          "package_name": "com.nimish.taskflow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi1nY-IaR247P_qbH8R4m7MwT5RBwoPxE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478441637613:android:bdbb983e3b1b0f879caee4",
+        "android_client_info": {
+          "package_name": "com.task.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi1nY-IaR247P_qbH8R4m7MwT5RBwoPxE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
