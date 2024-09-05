@@ -50,7 +50,7 @@ class DatabaseService {
 
   List<Todo> _todoListFromSnapshot (QuerySnapshot snapshot){
     return snapshot.docs.map((doc){
-      return Todo(id: doc['id'], title: doc['title'] ? '', description: doc['description'] ? '', completed: doc['completed'] ? '', timeStamp: doc['createdAt'] ? '',)
+      return Todo(id: doc.id, title: doc['title'] ?? '' , description: doc['description'] ?? '', completed: doc['completed'] ?? '', timeStamp: doc['createdAt'] ?? '')
     }).toList();
   }
   }
