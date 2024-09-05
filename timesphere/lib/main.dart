@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:timesphere/home_screen.dart';
 import 'package:timesphere/login_screen.dart';
 import 'package:timesphere/signup_screen.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -8,12 +10,13 @@ void main() async {
   await Firebase.initializeApp();
   // await dotenv.load(fileName: ".env");
   runApp(
-   const MyApp()
+    MyApp()
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "TaskFlow",
       theme: ThemeData(primarySwatch: Colors.indigo, primaryColor: Colors.indigo),
-      home:  SignupScreen(),
+      home:  _auth.currentUser != null ? HomeScreen() : LoginScreen(),
     );
   }
 }

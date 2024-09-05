@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:timesphere/home_screen.dart';
+import 'package:timesphere/login_screen.dart';
 import 'package:timesphere/services/auth_services.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -82,14 +83,24 @@ class SignupScreen extends StatelessWidget {
                 if(user != null){
                   Navigator.push(context,
                    MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
+                    // builder: (context) => HomeScreen(),
+                    builder: (context) => LoginScreen(),
                     ));
                 }
               }, child: Text("Register", style: TextStyle(
                 color: Colors.indigo,
-                fontSize: 16,
+                fontSize: 18,
               ),)),
-            )
+            ),
+            SizedBox(height: 20),
+            Text("OR", style: TextStyle(color: Colors.white),),
+            SizedBox(height: 10),
+            TextButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
+            }, child: Text("LOG IN", style: TextStyle(
+              fontSize: 18,
+              color: Colors.white
+            ),))
           ],
         ),),
       ),
