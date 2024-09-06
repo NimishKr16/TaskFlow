@@ -30,7 +30,7 @@ class DatabaseService {
 
   // Update Todo Status
   Future<void> updateTodoStatus(String id, bool completed ) async{
-    return await todoCollection.doc(id).update({'completed' : completed})
+    return await todoCollection.doc(id).update({'completed' : completed});
   }
 
   // Delete Todo Task
@@ -50,7 +50,7 @@ class DatabaseService {
 
   List<Todo> _todoListFromSnapshot (QuerySnapshot snapshot){
     return snapshot.docs.map((doc){
-      return Todo(id: doc.id, title: doc['title'] ?? '' , description: doc['description'] ?? '', completed: doc['completed'] ?? '', timeStamp: doc['createdAt'] ?? '')
+      return Todo(id: doc.id, title: doc['title'] ?? '' , description: doc['description'] ?? '', completed: doc['completed'] ?? '', timeStamp: doc['createdAt'] ?? '');
     }).toList();
   }
   }
