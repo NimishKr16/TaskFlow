@@ -6,11 +6,13 @@ class Todo {
   final String description;
   final bool completed;
   final Timestamp timeStamp;
+  final Timestamp? completeBy;
 
   Todo(
       {required this.id,
       required this.title,
       required this.description,
       required this.completed,
-      required this.timeStamp});
+      required this.timeStamp,
+      this.completeBy});
 }

@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:timesphere/model/todo_model.dart';
-import 'package:timesphere/services/database_services.dart';
+import 'package:TaskFlow/model/todo_model.dart';
+import 'package:TaskFlow/services/database_services.dart';
+import 'package:intl/intl.dart';
 
 class PendingWidgets extends StatefulWidget {
   const PendingWidgets({super.key});
@@ -42,7 +44,12 @@ class _PendingWidgetsState extends State<PendingWidgets> {
             itemCount: todos.length,
             itemBuilder: (context, index){
               Todo todo = todos[index];
-              final DateTime dt =todo.timeStamp.toDate();
+              print(todo.completeBy);
+              final DateTime? dt = todo.completeBy?.toDate();
+              print(dt);
+          //     String dt = completeByTimestamp != null
+          // ? DateFormat('dd/MM/yyyy').format(completeByTimestamp)
+          // : 'No Date Set';
               return Container(
                 margin: EdgeInsets.all(10),
                 decoration: BoxDecoration(
@@ -90,7 +97,7 @@ class _PendingWidgetsState extends State<PendingWidgets> {
                     ),),
                     subtitle: Text(todo.description,
                    ),
-                   trailing: Text('${dt.day}/${dt.month}/${dt.year}',
+                   trailing: Text('${dt?.day}/${dt?.month}/${dt?.year}',
                    style: TextStyle(
                     fontWeight: FontWeight.bold,
                    ),) ,
@@ -113,6 +120,23 @@ class _PendingWidgetsState extends State<PendingWidgets> {
     final TextEditingController _descriptionController = TextEditingController(text: todo?.description);
 
     final DatabaseService _databaseService = DatabaseService();
+    DateTime? _completeBy;
+    final TextEditingController _dateController = TextEditingController();
+    Future<void> _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (picked != null) {
+      setState(() {
+        _dateController.text = DateFormat('yyyy-MM-dd').format(picked);
+        _completeBy = picked;
+      });
+    }
+  }
 
     showDialog(context: context, builder: (context){
       return AlertDialog(
@@ -161,8 +185,20 @@ class _PendingWidgetsState extends State<PendingWidgets> {
             ),
             onPressed: () async {
             if(todo == null){
-              await _databaseService.addTodoTask(_titleController.text, _descriptionController.text);
-            }
+               DateTime? completeByDate;
+                    if (_dateController.text.isNotEmpty) {
+                      completeByDate =
+                          DateFormat('yyyy-MM-dd').parse(_dateController.text);
+                    }
+
+                    // Convert DateTime to Timestamp
+                    Timestamp? completeByTimestamp;
+                    if (completeByDate != null) {
+                      completeByTimestamp = Timestamp.fromDate(completeByDate);
+                    }
+                    await _databaseService.addTodoTask(_titleController.text,
+                        _descriptionController.text, completeByTimestamp);
+                  }
             else{
               await _databaseService.updateTodo(todo.id, _titleController.text, _descriptionController.text);
             }

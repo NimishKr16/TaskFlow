@@ -1,9 +1,10 @@
+import 'package:TaskFlow/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:timesphere/home_screen.dart';
-import 'package:timesphere/login_screen.dart';
-import 'package:timesphere/signup_screen.dart';
+import 'package:TaskFlow/home_screen.dart';
+import 'package:TaskFlow/login_screen.dart';
+// import 'package:timesphere/signup_screen.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

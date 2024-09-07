@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:timesphere/home_screen.dart';
-import 'package:timesphere/services/auth_services.dart';
-import 'package:timesphere/signup_screen.dart';
+import 'package:TaskFlow/home_screen.dart';
+import 'package:TaskFlow/services/auth_services.dart';
+import 'package:TaskFlow/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final AuthService _auth = AuthService();

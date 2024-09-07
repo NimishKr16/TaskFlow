@@ -3,8 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:timesphere/model/todo_model.dart';
-import 'package:timesphere/services/database_services.dart';
+import 'package:TaskFlow/model/todo_model.dart';
+import 'package:TaskFlow/services/database_services.dart';
 
 class CompletedWidget extends StatefulWidget {
   const CompletedWidget({super.key});
